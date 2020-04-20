@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
+<script src="./js/bundle.js"></script>
+  <title>To-Do List</title>
+</head>
+<body>
+  <h1>To-Do Master</h1>
+  <br>
+  <div id="app">
+    <form v-on:submit.prevent="saveNewItem">
+      <label for="new-item">New Task:</label>
+      <input id="new-item" type="text" v-model="newItem" />
+      <br>
+      <br>
+      <input id="save-button" type="submit" value ="Save New Item" />
+    </form>
+
+
+    <ul>
+      <li v-for="(item, index) in items" v-bind:class="item.isComplete ? 'complete' : 'not-complete' ">
+        <span>{{ item.name }}</span>
+        <span v-if="item.isComplete">Complete!</span>
+        <button v-if="!item.isComplete" v-on:click="completeItem(index)">Done?</button>
+      </li>
+    </ul>
+
+  </div>
+</body>
+</html>
